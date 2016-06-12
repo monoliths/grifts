@@ -17,6 +17,7 @@ $classes = {
 }
 
 module Grifts
+  extend self
 
   def leaderboard(selected_class, top_positions, season)
     top_positions = top_positions || 25
