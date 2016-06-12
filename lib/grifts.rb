@@ -18,10 +18,9 @@ $classes = {
 
 module Grifts
 
-  def leaderboard
-    selected_class = ARGV[0].downcase
-    top_positions =( ARGV[1] || '25').to_i
-    season = ARGV[2] || '6'
+  def leaderboard(selected_class, top_positions, season)
+    top_positions = top_positions || 25
+    season = season || '6'
 
     url = "http://us.battle.net/d3/en/rankings/season/#{season}/rift-#{$classes[selected_class]}"
     doc = Nokogiri::HTML(open(url), nil, Encoding::UTF_8.to_s)
@@ -37,5 +36,5 @@ module Grifts
 
     puts ladder
   end
-  
+
 end
