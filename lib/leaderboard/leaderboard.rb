@@ -1,5 +1,6 @@
 require "open-uri"
 require "nokogiri"
+require "timeout"
 
 class Leaderboard
   attr_accessor :season, :hero, :ladder
@@ -15,17 +16,27 @@ class Leaderboard
     @ladder = []
   end
 
-  def scrape
+  def scrape(timeout = 5)
     url = "http://us.battle.net/d3/en/rankings/season/#{@season}/rift-#{@hero}"
-    doc = Nokogiri::HTML(open(url), nil, Encoding::UTF_8.to_s)
-    leaders_unformated = doc.xpath('//*/table/tbody/tr//*/a/@href')
 
-    leaders_unformated.each_with_index do |player, index|
-        @ladder << player.value
-        @ladder[index].slice!("/d3/en/profile/")
-        @ladder[index].slice!("/")
+    doc = Timeout::timeout(timeout) do
+      Nokogiri::HTML(open(url), nil, Encoding::UTF_8.to_s)
     end
-    return true
+
+    if doc != nil
+      leaders_unformated = doc.xpath('//*/table/tbody/tr//*/a/@href')
+      @ladder.clear
+
+      leaders_unformated.each_with_index do |player, index|
+          @ladder << player.value
+          @ladder[index].slice!("/d3/en/profile/")
+          @ladder[index].slice!("/")
+      end
+
+      return true
+    end
+
+    return false
   end
 
   def print_leaderboard(range = (0..9))
