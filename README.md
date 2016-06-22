@@ -20,7 +20,7 @@ Or install it yourself as:
     $ gem install grifts
 
 ## Usage
-
+```ruby
     require 'grifts'
 
     # create a new leaderboard, season 6 for demonhunters
@@ -31,6 +31,7 @@ Or install it yourself as:
 
     # all 1,000 positions will be in in order in the ladder variable
     leaderboard.ladder
+```
 
 ## Development
 
