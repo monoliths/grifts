@@ -1,6 +1,7 @@
 # Grifts
 
-Web scraper that retrieves "Diablo 3" leaderboard information. This is my first gem so expect a lot of convention errors. VERY WORK IN PROGRESS!
+Web scraper that retrieves "Diablo 3" leaderboard information. This is my first gem so expect a lot of convention errors.
+Currently you can scrape seasonal leaderboards for all the hero classes.
 
 ## Installation
 
@@ -20,7 +21,16 @@ Or install it yourself as:
 
 ## Usage
 
-work in progress.
+    require 'grifts'
+
+    # create a new leaderboard, season 6 for demonhunters
+    leaderboard = Leaderboard.new(6, :demonhunter)
+
+    # scrape the season 6 demonhuner leaderboard, returns true if successful
+    leaderboard.scrape(10)
+
+    # all 1,000 positions will be in in order in the ladder variable
+    leaderboard.ladder
 
 ## Development
 
