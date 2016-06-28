@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = 'A gem for scraping diablo 3
                         greater rift leaderboard ranks.'
   spec.description   = 'Scrape diablo 3 leaderboard ranks.'
-  spec.homepage      = 'htts://github.com/monoliths/grifts'
+  spec.homepage      = 'https://github.com/monoliths/grifts'
   spec.license       = 'MIT'
 
   # if spec.respond_to?(:metadata)
