@@ -16,6 +16,7 @@ class Leaderboard
                     dh: 'dh',
                     wiz: 'wizard',
                     sader: 'crusader' }.freeze
+                    
   def initialize(season = 6, hero = :barb)
     @season = season.to_s
     @hero = HERO_CLASSES[hero]
