@@ -16,7 +16,7 @@ class Leaderboard
                     dh: 'dh',
                     wiz: 'wizard',
                     sader: 'crusader' }.freeze
-                    
+
   def initialize(season = 6, hero = :barb)
     @season = season.to_s
     @hero = HERO_CLASSES[hero]
@@ -42,8 +42,8 @@ class Leaderboard
   # If any error occurs the method returns false.
   def scrape_core(timeout = 5)
     begin
-      url = "http://us.battle.net/d3/en/rankings/season/#{@season}/rift-#{@hero}"
-      doc = Timeout::timeout(timeout) do
+      url = "https://us.battle.net/d3/en/rankings/season/#{@season}/rift-#{@hero}"
+      doc = Timeout.timeout(timeout) do
         Nokogiri::HTML(open(url), nil, Encoding::UTF_8.to_s)
       end
       unless doc.nil?
