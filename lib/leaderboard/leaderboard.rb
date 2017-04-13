@@ -24,7 +24,7 @@ class Leaderboard
   end
 
   def valid_leaderboard?
-    return true if !HERO_CLASSES.values.include?(@hero) || !@season.to_i.between?(1, 6)
+    return true if !HERO_CLASSES.values.include?(@hero) || !@season.to_i.between?(1, 10)
   end
 
   def scrape(timeout = 5)
